@@ -38,21 +38,23 @@ public class NumberWizard : MonoBehaviour
     void introText()
     {
         Debug.Log("Welcome to Number Wizard!");
-        Debug.Log("Please pick a number");
-        Debug.Log($"Maximum of {maxNumber}");
-        Debug.Log($"Minimum of {minNumber}");
+        Debug.Log($"Pick a number between {minNumber} and {maxNumber}.");
     }
 
     void guessHigher()
     {
         minNumber = guess;
-        guess = average(minNumber, maxNumber);
-        guessText();
+        nextGuess();
     }
 
     void guessLower()
     {
         maxNumber = guess;
+        nextGuess();
+    }
+
+    void nextGuess()
+    {
         guess = average(minNumber, maxNumber);
         guessText();
     }
