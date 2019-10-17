@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class NumberWizard : MonoBehaviour
 {
-    private int minNumber = 1;
-    private int maxNumber = 1000;
+    const int INIT_MIN = 1;
+    const int INIT_MAX = 1000;
+
+    private int minNumber;
+    private int maxNumber;
     private int guess;
 
     // Start is called before the first frame update
     void Start()
     {
-        guess = average(minNumber, maxNumber);
-        introText();
-        guessText();
+        initialize();
     }
 
     // Update is called once per frame
@@ -35,10 +36,14 @@ public class NumberWizard : MonoBehaviour
         }
     }
 
-    void introText()
+    void initialize()
     {
+        minNumber = INIT_MIN;
+        maxNumber = INIT_MAX;
+        guess = average(minNumber, maxNumber);
         Debug.Log("Welcome to Number Wizard!");
         Debug.Log($"Pick a number between {minNumber} and {maxNumber}.");
+        guessText();
     }
 
     void guessHigher()
@@ -73,6 +78,6 @@ public class NumberWizard : MonoBehaviour
     void gameOver()
     {
         Debug.Log($"Your number was {guess}");
-        Application.Quit();
+        initialize();
     }
 }
